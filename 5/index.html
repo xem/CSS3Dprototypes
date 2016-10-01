@@ -1,5 +1,9 @@
+<!doctype html>
+
 <meta charset=utf-8>
+
 <input type=checkbox id=toggle3d checked>3D
+
 <div id=viewport>
   <div id=camera>
     <div id=scene>
@@ -7,6 +11,7 @@
     </div>
   </div>
 </div>
+
 Move with arrows / WASD / ZQSD
 
 <style>
@@ -29,8 +34,8 @@ Move with arrows / WASD / ZQSD
 }
 
 #scene {
-  width: 1000px;
-  height: 1000px;
+  width: 1648px;
+  height: 1888px;
   border: 2px solid green;
   transform-origin: 0 0;
   background: url(bg.png);
@@ -50,7 +55,8 @@ u=r=d=l=0;onkeyup=t=(e,v)=>top['lurd************************l**r************l*d*
 
 // Scene
 angle_x = angle_y = angle_z = 0; // rad
-pos_x = pos_y = -500; // px
+pos_x = -800;
+pos_y = -770; // px
 
 // Loop
 setInterval(function(){
@@ -58,6 +64,6 @@ setInterval(function(){
   if(l) angle_z += .05;
   if(u) pos_y += 10 * Math.cos(angle_z), pos_x += 10 * Math.sin(angle_z)
   if(d) pos_y -= 10 * Math.cos(angle_z), pos_x -= 10 * Math.sin(angle_z)
-  scene.style.transform = (toggle3d.checked ? "rotateX(90deg) translateZ(-50px)" : "") + "rotateZ(" + angle_z + "rad) translateX(" + pos_x + "px) translateY(" + pos_y + "px)";
+  scene.style.transform = (toggle3d.checked ? "rotateX(90deg) translateZ(-10px)" : "") + "rotateZ(" + angle_z + "rad) translateX(" + pos_x + "px) translateY(" + pos_y + "px)";
 },33);
 </script>
