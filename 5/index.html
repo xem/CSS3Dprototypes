@@ -6,11 +6,11 @@
 <br>
 <input type=checkbox id=toggleview checked>3rd-person
 
-
 <div id=viewport>
   <div id=camera>
     <div id=scene>
-      <img src=kart.png id=kart width=15>
+      <img src=kart.png id=kart>
+      <img src=tree.png id=tree>
     </div>
   </div>
 </div>
@@ -29,6 +29,8 @@ Move with arrows / WASD / ZQSD
   height: 400px;
   overflow: hidden;
   //border: 2px solid red;
+  background: url(back.png);
+  background-size: auto 200px;
 }
 
 #camera {
@@ -37,22 +39,26 @@ Move with arrows / WASD / ZQSD
   position: relative;
   left: 200px;
   top: 200px;
-  //border: 1px solid blue;
   transition: transform .2s;
 }
 
 #scene {
   width: 1648px;
   height: 1888px;
-  //border: 2px solid green;
   transform-origin: 0 0;
   background: url(bg.png);
 }
 
 #kart {
+  position: absolute;
   transform-origin: center center;
   transition: opacity .2s;
   opacity: 0;
+  width: 15px;
+}
+
+#tree {
+  position: absolute;
 }
 
 #toggle3d:checked ~ #viewport {
@@ -92,7 +98,13 @@ setInterval(function(){
   if(l) angle_z += .05;
   if(u) pos_y += 5 * Math.cos(angle_z), pos_x += 5 * Math.sin(angle_z)
   if(d) pos_y -= 5 * Math.cos(angle_z), pos_x -= 5 * Math.sin(angle_z)
-  scene.style.transform = (toggle3d.checked ? "rotateX(80deg) translateZ(-10px)" : "") + "rotateZ(" + angle_z + "rad) translateX(" + pos_x + "px) translateY(" + pos_y + "px)";
-  kart.style.transform = "translateX(" + (-pos_x - 7.5) + "px) translateY(" + (-pos_y- 7.5) + "px) translateZ(7px) rotateZ(" + -angle_z + "rad) rotateX(-90deg)"
+  
+  scene.style.transform = (toggle3d.checked ? "rotateX(85deg) translateZ(-10px)" : "") + "rotateZ(" + angle_z + "rad) translateX(" + pos_x + "px) translateY(" + pos_y + "px)";
+  
+  kart.style.transform = "translateX(" + (-pos_x - 7.5) + "px) translateY(" + (-pos_y- 7.5) + "px) translateZ(7px) rotateZ(" + -angle_z + "rad) rotateX(-90deg)";
+  
+  tree.style.transform = "translateX(725px) translateY(241px) translateZ(30px) rotateZ(" + -angle_z + "rad) rotateX(-90deg)";
+  
+  viewport.style.backgroundPosition = (angle_z*300) + "px top";
 },33);
 </script>
