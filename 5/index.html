@@ -1,11 +1,8 @@
 <!doctype html>
-
 <meta charset=utf-8>
-
 <input type=checkbox id=toggle3d checked>3D
 <br>
 <input type=checkbox id=toggleview checked>3rd-person
-
 <div id=viewport>
   <div id=camera>
     <div id=scene>
@@ -14,73 +11,22 @@
     </div>
   </div>
 </div>
-
 Move with arrows / WASD / ZQSD
 
 <style>
-
-* {
-  transform-style: preserve-3d;
-  box-sizing: border-box;
-}
-
-#viewport {
-  width: 400px;
-  height: 400px;
-  overflow: hidden;
-  //border: 2px solid red;
-  background: url(back.png);
-  background-size: auto 200px;
-}
-
-#camera {
-  width: 0px;
-  height: 0px;
-  position: relative;
-  left: 200px;
-  top: 200px;
-  transition: transform .2s;
-}
-
-#scene {
-  width: 1648px;
-  height: 1888px;
-  transform-origin: 0 0;
-  background: url(bg.png);
-}
-
-#kart {
-  position: absolute;
-  transform-origin: center center;
-  transition: opacity .2s;
-  opacity: 0;
-  width: 15px;
-}
-
-#tree {
-  position: absolute;
-}
-
-#toggle3d:checked ~ #viewport {
-  perspective: 400px;
-}
-
-#toggle3d:checked ~ #viewport #camera {
-  transform: translateZ(400px);
-}
-
-#toggle3d:checked ~ #toggleview:checked ~ #viewport #camera {
-  transform: translateZ(300px);
-}
-
-#toggleview:checked ~ #viewport #camera #scene #kart {
-  opacity: 1;
-}
-
+* { transform-style: preserve-3d; box-sizing: border-box; }
+#viewport { width: 400px; height: 400px; overflow: hidden; background: url(back.png); background-size: auto 200px; }
+#camera { width: 0px; height: 0px; position: relative; left: 200px; top: 200px; transition: transform .2s; }
+#scene { width: 1648px; height: 1888px; transform-origin: 0 0; background: url(bg.png); }
+#kart { position: absolute; transform-origin: center center; transition: opacity .2s; opacity: 0; width: 15px; }
+#tree { position: absolute; }
+#toggle3d:checked ~ #viewport { perspective: 400px; }
+#toggle3d:checked ~ #viewport #camera { transform: translateZ(400px); }
+#toggle3d:checked ~ #toggleview:checked ~ #viewport #camera { transform: translateZ(300px); }
+#toggleview:checked ~ #viewport #camera #scene #kart { opacity: 1; }
 </style>
 
 <script>
-
 toggle3d.checked = true;
 toggleview.checked = true;
 
@@ -98,13 +44,9 @@ setInterval(function(){
   if(l) angle_z += .05;
   if(u) pos_y += 5 * Math.cos(angle_z), pos_x += 5 * Math.sin(angle_z)
   if(d) pos_y -= 5 * Math.cos(angle_z), pos_x -= 5 * Math.sin(angle_z)
-  
   scene.style.transform = (toggle3d.checked ? "rotateX(85deg) translateZ(-10px)" : "") + "rotateZ(" + angle_z + "rad) translateX(" + pos_x + "px) translateY(" + pos_y + "px)";
-  
   kart.style.transform = "translateX(" + (-pos_x - 7.5) + "px) translateY(" + (-pos_y- 7.5) + "px) translateZ(7px) rotateZ(" + -angle_z + "rad) rotateX(-90deg)";
-  
   tree.style.transform = "translateX(725px) translateY(241px) translateZ(30px) rotateZ(" + -angle_z + "rad) rotateX(-90deg)";
-  
   viewport.style.backgroundPosition = (angle_z*300) + "px top";
 },33);
 </script>
