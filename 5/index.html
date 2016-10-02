@@ -22,17 +22,17 @@ Move with arrows / WASD / ZQSD
 <style>
 * { transform-style: preserve-3d; box-sizing: border-box; }
 #viewport { width: 400px; height: 400px; overflow: hidden; background: url(back.png); background-size: auto 200px; perspective: 400px; }
-#camera { width: 0px; height: 0px; position: relative; left: 200px; top: 200px; transition: transform .2s; }
+#camera { width: 0px; height: 0px; position: relative; left: 200px; top: 200px; transition: transform .4s; }
 #scene { width: 1648px; height: 1888px; transform-origin: 0 0; background: url(bg.png); }
-#scenewrapper { width: 1648px; height: 1888px; transform-origin: 0 0; transition: transform .2s; }
-#kartwrapper { position: absolute; transform-origin: center center; transition: opacity .2s; opacity: 0; }
-#kart { width: 15px; }
+#scenewrapper { width: 1648px; height: 1888px; transform-origin: 0 0; transition: transform .4s; }
+#kartwrapper { position: absolute; transform-origin: center center; }
+#kart { width: 15px; transition: transform .4s, opacity .4s; opacity: 0; }
 #treewrapper { position: absolute; transform: translateX(725px) translateY(241px) translateZ(30px); }
 #toggle3d:checked ~ #viewport #scenewrapper { transform: rotateX(85deg) translateZ(-10px) }
 #toggle3d:checked ~ #viewport #camera { transform: translateZ(400px); }
 #toggle3d:checked ~ #viewport #kart { transform: rotateX(-90deg); }
 #toggle3d:checked ~ #toggleview:checked ~ #viewport #camera { transform: translateZ(300px); }
-#toggleview:checked ~ #viewport #camera #scene #kartwrapper { opacity: 1; }
+#toggleview:checked ~ #viewport #camera #scene #kart { opacity: 1; }
 </style>
 
 <script>
