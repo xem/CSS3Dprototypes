@@ -15,21 +15,22 @@
     </div>
   </div>
 </div>
-<audio src=music.mp3 autoplay loop>
+<audio src=music.mp3 loop controls></audio>
 
 <style>
 * { transform-style: preserve-3d; box-sizing: border-box; }
-#viewport { width: 600px; height: 400px; overflow: hidden; background: url(back.png) repeat-x; background-size: auto 400px; perspective: 400px; }
+#viewport { width: 600px; height: 400px; overflow: hidden; background: url(back.png) repeat-x; background-size: auto 350px; perspective: 400px; }
 #camera { width: 0px; height: 0px; position: relative; left: 300px; top: 200px; transition: transform .4s; }
-#scenewrapper { width: 1648px; height: 1888px; transform-origin: 0 0; transition: transform .4s; }
-#scene { width: 1648px; height: 1888px; transform-origin: 0 0; background: url(bg.png); }
+#scenewrapper { width: 4000px; height: 4500px; transform-origin: 0 0; transition: transform .4s; }
+#scene { width: 4000px; height: 4000px; transform-origin: 0 0; background: url(bg.png) no-repeat; background-size: auto 4000px}
 #kartwrapper { position: absolute; transform-origin: center center; }
-#kart { width: 15px; transition: transform .4s, opacity .4s; opacity: 0; }
-#treewrapper { position: absolute; transform: translateX(725px) translateY(241px) translateZ(32px); }
-#toggle3d:checked ~ #viewport #scenewrapper { transform: rotateX(85deg) translateZ(-17px) }
+#kart { width: 30px; transition: transform .4s, opacity .4s; opacity: 0; }
+#treewrapper { position: absolute; transform: translateX(1550px) translateY(550px) translateZ(40px); }
+#tree { width: 60px }
+#toggle3d:checked ~ #viewport #scenewrapper { transform: rotateX(80deg) translateZ(-70px) }
 #toggle3d:checked ~ #viewport #camera { transform: translateZ(400px); }
 #toggle3d:checked ~ #viewport #kart { transform: rotateX(-90deg); }
-#toggle3d:checked ~ #toggleview:checked ~ #viewport #camera { transform: translateZ(300px); }
+#toggle3d:checked ~ #toggleview:checked ~ #viewport #camera { transform: translateZ(200px) }
 #toggleview:checked ~ #viewport #camera #scene #kart { opacity: 1; }
 </style>
 
@@ -44,17 +45,17 @@ onkeydown=e=>t(e,1);
 
 // Scene
 angle_x = angle_y = angle_z = 0; // rad
-pos_x = -800;
-pos_y = -770;
+pos_x = -1700;
+pos_y = -1500;
 
 // Loop
 setInterval(function(){
   if(r) angle_z -= .05;
   if(l) angle_z += .05;
-  if(u) pos_y += 5 * Math.cos(angle_z), pos_x += 5 * Math.sin(angle_z)
-  if(d) pos_y -= 5 * Math.cos(angle_z), pos_x -= 5 * Math.sin(angle_z)
+  if(u) pos_y += 15 * Math.cos(angle_z), pos_x += 15 * Math.sin(angle_z)
+  if(d) pos_y -= 15 * Math.cos(angle_z), pos_x -= 15 * Math.sin(angle_z)
   scene.style.transform = "rotateZ(" + angle_z + "rad) translateX(" + pos_x + "px) translateY(" + pos_y + "px)";
-  kartwrapper.style.transform = "translateX(" + (-pos_x - 7.5) + "px) translateY(" + (-pos_y- 7.5) + "px) translateZ(8px) rotateZ(" + -angle_z + "rad)";
+  kartwrapper.style.transform = "translateX(" + (-pos_x - 15) + "px) translateY(" + (-pos_y - 15) + "px) translateZ(14px) rotateZ(" + -angle_z + "rad)";
   tree.style.transform = "rotateZ(" + -angle_z + "rad) rotateX(-90deg)";
   viewport.style.backgroundPosition = (angle_z * 300) + "px top";
 },33);
